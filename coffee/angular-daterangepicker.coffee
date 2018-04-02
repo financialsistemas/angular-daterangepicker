@@ -80,7 +80,10 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
     # It should also set the input element's val with $viewValue as we don't let the rangepicker do this
     modelCtrl.$render = () ->
       # Update the calendars
-      if modelCtrl.$modelValue and modelCtrl.$modelValue.startDate
+      if opt.singleDatePicker && modelCtrl.$modelValue
+        _setStartDate(modelCtrl.$modelValue)
+        _setEndDate(modelCtrl.$modelValue)
+      else if modelCtrl.$modelValue and modelCtrl.$modelValue.startDate
         _setStartDate(modelCtrl.$modelValue.startDate)
         _setEndDate(modelCtrl.$modelValue.endDate)
       else _clear()
