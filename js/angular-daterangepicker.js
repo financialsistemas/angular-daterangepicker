@@ -97,7 +97,10 @@
           }
         });
         modelCtrl.$render = function() {
-          if (modelCtrl.$modelValue && modelCtrl.$modelValue.startDate) {
+          if (opts.singleDatePicker && modelCtrl.$modelValue) {
+            _setStartDate(modelCtrl.$modelValue);
+            _setEndDate(modelCtrl.$modelValue);
+          } else if (modelCtrl.$modelValue && modelCtrl.$modelValue.startDate) {
             _setStartDate(modelCtrl.$modelValue.startDate);
             _setEndDate(modelCtrl.$modelValue.endDate);
           } else {
