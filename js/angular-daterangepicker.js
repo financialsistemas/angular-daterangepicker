@@ -172,13 +172,11 @@
           el.daterangepicker(angular.extend(opts, {
             autoUpdateInput: false
           }), function(startDate, endDate, label) {
-            return $scope.$apply((function(_this) {
-              return function() {
-                if (typeof opts.changeCallback === "function") {
-                  return opts.changeCallback.apply(_this, [startDate, endDate, label]);
-                }
-              };
-            })(this));
+            return $scope.$apply(function() {
+              if (typeof opts.changeCallback === "function") {
+                return opts.changeCallback.apply(this, arguments);
+              }
+            });
           });
           _picker = el.data('daterangepicker');
           $scope.picker = _picker;

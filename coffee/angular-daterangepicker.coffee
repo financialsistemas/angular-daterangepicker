@@ -128,7 +128,10 @@ pickerModule.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRange
         _setStartDate(modelCtrl.$modelValue)
         _setEndDate(modelCtrl.$modelValue)
       else if modelCtrl.$modelValue and (modelCtrl.$modelValue.startDate || modelCtrl.$modelValue.endDate)
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4386763cdd879e73027a0fdef26bd327f1d6aff
         _setStartDate(modelCtrl.$modelValue.startDate)
         _setEndDate(modelCtrl.$modelValue.endDate)
       else _clear()
