@@ -279,7 +279,7 @@ pickerModule.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRange
         check = value and
           (value.startDate and moment.isMoment(value.startDate) and value.startDate.isValid()) and
           (value.endDate and moment.isMoment(value.endDate) and value.endDate.isValid())
-      return !applicable || !!check
+      return !applicable && !!check
 
     # Validation for our min/max
     _validateRange = (date, min, max) ->
