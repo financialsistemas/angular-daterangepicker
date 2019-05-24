@@ -128,10 +128,6 @@ pickerModule.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRange
         _setStartDate(modelCtrl.$modelValue)
         _setEndDate(modelCtrl.$modelValue)
       else if modelCtrl.$modelValue and (modelCtrl.$modelValue.startDate || modelCtrl.$modelValue.endDate)
-<<<<<<< HEAD
-
-=======
->>>>>>> d4386763cdd879e73027a0fdef26bd327f1d6aff
         _setStartDate(modelCtrl.$modelValue.startDate)
         _setEndDate(modelCtrl.$modelValue.endDate)
       else _clear()
@@ -280,7 +276,8 @@ pickerModule.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRange
       if opts.singleDatePicker
         check = value && value.isValid()
       else
-        check = value && value.startDate && value.startDate.isValid() && value.endDate && value.endDate.isValid()
+        check = value && (value.startDate && moment.isMoment(value.startDate) && value.startDate.isValid()) and
+          (value.endDate && moment.isMoment(value.endDate) && value.endDate.isValid())
       return !applicable || !!check
 
     # Validation for our min/max

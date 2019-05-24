@@ -172,11 +172,13 @@
           el.daterangepicker(angular.extend(opts, {
             autoUpdateInput: false
           }), function(startDate, endDate, label) {
-            return $scope.$apply(function() {
-              if (typeof opts.changeCallback === "function") {
-                return opts.changeCallback.apply(this, arguments);
-              }
-            });
+            return $scope.$apply((function(_this) {
+              return function() {
+                if (typeof opts.changeCallback === "function") {
+                  return opts.changeCallback.apply(_this, [startDate, endDate, label]);
+                }
+              };
+            })(this));
           });
           _picker = el.data('daterangepicker');
           $scope.picker = _picker;
@@ -263,7 +265,7 @@
           if (opts.singleDatePicker) {
             check = value && value.isValid();
           } else {
-            check = value && value.startDate && value.startDate.isValid() && value.endDate && value.endDate.isValid();
+            check = value && (value.startDate && moment.isMoment(value.startDate) && value.startDate.isValid()) && (value.endDate && moment.isMoment(value.endDate) && value.endDate.isValid());
           }
           return !applicable || !!check;
         };
