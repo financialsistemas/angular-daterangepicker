@@ -267,7 +267,7 @@
           } else {
             check = value && (value.startDate && moment.isMoment(value.startDate) && value.startDate.isValid()) && (value.endDate && moment.isMoment(value.endDate) && value.endDate.isValid());
           }
-          return !applicable || !!check;
+          return !applicable && !!check;
         };
         _validateRange = function(date, min, max) {
           var ref;
