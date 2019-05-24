@@ -272,12 +272,13 @@ pickerModule.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRange
 
 
     modelCtrl.$validators['invalid'] =(value, viewValue) ->
-      applicable = attrs.required && !modelCtrl.$isEmpty(viewValue)
+      applicable = !!attrs.required && !modelCtrl.$isEmpty(viewValue)
       if opts.singleDatePicker
-        check = value && value.isValid()
+        check = value and moment.isMoment(value) and value.isValid()
       else
-        check = value && (value.startDate && moment.isMoment(value.startDate) && value.startDate.isValid()) and
-          (value.endDate && moment.isMoment(value.endDate) && value.endDate.isValid())
+        check = value and
+          (value.startDate and moment.isMoment(value.startDate) and value.startDate.isValid()) and
+          (value.endDate and moment.isMoment(value.endDate) and value.endDate.isValid())
       return !applicable || !!check
 
     # Validation for our min/max

@@ -261,9 +261,9 @@
         });
         modelCtrl.$validators['invalid'] = function(value, viewValue) {
           var applicable, check;
-          applicable = attrs.required && !modelCtrl.$isEmpty(viewValue);
+          applicable = !!attrs.required && !modelCtrl.$isEmpty(viewValue);
           if (opts.singleDatePicker) {
-            check = value && value.isValid();
+            check = value && moment.isMoment(value) && value.isValid();
           } else {
             check = value && (value.startDate && moment.isMoment(value.startDate) && value.startDate.isValid()) && (value.endDate && moment.isMoment(value.endDate) && value.endDate.isValid());
           }
